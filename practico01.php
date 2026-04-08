@@ -27,6 +27,22 @@
         echo '<h3>División: ' . (int)($a / $b) . '</h3>';
 
 
+        echo '<h1>Actividad 4</h1> ';
+
+       
+        $nombreP = "Monitor Gamer"; // tipo string
+        $precio = 12500.50;              // tipo float [2]
+        $cant = 2; 
+
+        $total = $precio * $cant;
+
+        echo '<h3>Producto: ' . $nombreP . '</h3>';
+        echo '<h3>Precio unitario: $' . $precio . '</h3>';
+        echo '<h3>Cantidad: ' . $cant . '</h3>';        
+
+        echo '<h1>Actividad 5</h1> ';
+        echo
+
 
 ?>
     
