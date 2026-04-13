@@ -1,4 +1,3 @@
-
 <?php
         echo '<h1>Actividad 1</h1> ';
 
@@ -41,7 +40,6 @@
         echo '<h3>Cantidad: ' . $cant . '</h3>';        
 
         echo '<h1>Actividad 5</h1> ';
-        echo
 
 
 ?>
