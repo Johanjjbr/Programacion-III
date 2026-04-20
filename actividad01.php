@@ -8,14 +8,14 @@ Se pide:
 * Mostrar el promedio calculado en el programa principal
 * Si el promedio es mayor o igual a 6 mostrar el cartel "Alumno aprobado"; si el promedio es menor a 6 mostrar el cartel "Alumno desaprobado"*/
 
-function promedio($n1, $n2, $n3){
-    $promedio = ($n1 + $n2 + $n3) / 3;
-    return (int)$promedio;
-}   
+$n1 = $_POST['n1'];
+$n2 = $_POST['n2'];    
+$n3 = $_POST['n3'];
 
-$n1 = 7;
-$n2 = 8;        
-$n3 = 5;
+function promedio($n1, $n2, $n3){
+    return ($n1 + $n2 + $n3) / 3;
+}
+
 $promedio = promedio($n1, $n2, $n3);
 echo "<div>El promedio es: $promedio</div>";
 if($promedio >= 6){
