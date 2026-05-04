@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Ejercicio 2 - Formulario con Tablas</title>
+</head>
+<body>
+    <h2>Ejercicio 2: Formulario Mejorado</h2>
+    <h2>Registro para acceso al mail</h2>
+    <h4>Mejorando presentación con Tablas</h4>
+
+    <form id="formulario_registro" action="procesar03.php" method="POST">
+        <table border="1">
+            <tr>
+                <td><label>Correo</label></td>
+                <td>
+                    <input type="email" id="mail" name="mail" 
+                           placeholder="tucorreo@dominio.com" required/>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Contraseña</label></td>
+                <td>
+                    <input type="password" id="pass" name="pass" required/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button id="enviar" type="submit">Enviar</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br>
+    <h3>Alumno: Johan Brito | Materia: Programación III</h3>
+    <h3>Año: 2026</h3>
+</body>
+</html>
