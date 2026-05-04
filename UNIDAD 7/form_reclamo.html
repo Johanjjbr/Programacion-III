@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 6 - Formulario de Reclamo</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background-color: #f4f4f9; }
+        table { margin: 0 auto; border-collapse: collapse; width: 450px;  }
+
+    </style>
+</head>
+<body>
+    <h2>Ejercicio 6: Formulario de Reclamo</h2>
+    <h1>Formulario de Reclamo para<br>Alumnos de la TSDS</h1>
+
+    <!-- Imagen de perfil según la captura del práctico -->
+    <img src="perfil.png" alt="Avatar Alumno" class="img-avatar">
+
+    <form action="procesar_reclamo.php" method="POST" >
+        <table border="1">
+            <tr>
+                <td>Nombre</td>
+                <td><input type="text" name="nombre" required></td>
+            </tr>
+            <tr>
+                <td>Teléfono</td>
+                <td><input type="text" name="telefono"></td>
+            </tr>
+            <tr>
+                <td>Mail</td>
+                <td><input type="email" name="mail" required></td>
+            </tr>
+            <tr>
+                <td>Asunto</td>
+                <td><input type="text" name="asunto" required></td>
+            </tr>
+            <tr>
+                <td>Detalle</td>
+                <td>
+                    <textarea name="detalle" rows="6" placeholder="Escriba aquí los detalles de su reclamo..."></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Enviar Reclamo" >
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br>
+    <hr>
+  <footer>
+    <h3>Johan Brito | Materia: Programación III</h3>
+    <h3>Año: 2026</h3>
+  </footer>
+</body>
+</html>

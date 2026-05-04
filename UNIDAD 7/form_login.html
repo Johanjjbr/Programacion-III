@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 4 - Login de Alumnos</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h2>Ejercicio 4: Formulario de Acceso</h2>
+    <h1>Acceso al Sistema Alumnos</h1>
+
+    <!-- Imagen de perfil (puedes usar una local o una URL de marcador de posición) -->
+    <img src="perfil.png" alt="avatar" class="img-alumno">
+
+    <form action="procesar_login.php" method="POST">
+        <table border="1">
+            <tr>
+                <td>Usuario</td>
+                <td><input type="text" name="usuario" required style="width: 95%;"></td>
+            </tr>
+            <tr>
+                <td>Clave</td>
+                <td><input type="password" name="clave" placeholder="123456" required style="width: 95%;"></td>
+            </tr>
+            <tr>
+                <td class="btn-container">
+                    <input type="reset" value="Reset">
+                </td>
+                <td class="btn-container">
+                    <input type="submit" value="Ingresar">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br>
+  <footer>
+        <h3>Johan Brito | Materia: Programación III</h3>
+    <h3>Año: 2026</h3>
+  </footer></body>
+</html>

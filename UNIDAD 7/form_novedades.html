@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 5 - Registro de Novedades</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        table { margin: 0 auto; border-collapse: collapse; width: 450px; }
+
+    </style>
+</head>
+<body>
+    <h2>Ejercicio 5: Formulario de Registro</h2>
+    <h1>Registrarse para recibir<br>Novedades sobre la TSDS</h1>
+
+    <img src="perfil.png" alt="Avatar" >
+
+    <form action="procesar_novedades.php" method="POST">
+        <table border="1">
+            <tr>
+                <td>Nombre</td>
+                <td><input type="text" name="nombre" required></td>
+            </tr>
+            <tr>
+                <td>Departamento</td>
+                <td>
+                    <select name="depto">
+                        <option value="25 de mayo">Caucete</option>
+                        <option value="Capital">25 de mayo</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Mail</td>
+                <td><input type="email" name="mail" required></td>
+            </tr>
+            <tr>
+                <td class="centrado">
+                    <input type="reset" value="Reset">
+                </td>
+                <td class="centrado">
+                    <input type="submit" value="Anotarse para recibir novedades">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br><br>
+    <hr>
+  <footer>
+    <h3>Johan Brito | Materia: Programación III</h3>
+    <h3>Año: 2026</h3>
+  </footer>
+</body>
+</html>
