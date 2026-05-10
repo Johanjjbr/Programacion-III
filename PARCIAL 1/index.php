@@ -42,8 +42,8 @@
         echo "</table>";
     }
 
-    function barato($concesionaria) {
-        echo "<h2>El Auto más barato</h2>";
+    function barato($concesionaria, $taza) {
+        echo "<h2>2. El Auto más barato</h2>";
 
         $barato = $concesionaria[0]; 
         for ($i = 1; $i < count($concesionaria); $i++) {
@@ -52,11 +52,11 @@
             }
         }
 
-        echo "<p>El auto más barato es: " . $barato[0] . " " . $barato[1] . " (" . $barato[2] . ")</p>";
+        echo "<p>El auto más barato es: " . $barato[0] . " " . $barato[1] . " Pesos: " . $barato[2] . "   Dolares:" . $barato[2]*$taza . "</p>";
     }
 
-
-        echo "<h2>Autos que no superan los $6000 Dolares</h2>";
+        function superar6mil($concesionaria) {
+        echo "<h2>3. Autos que no superan los $6000 Dolares</h2>";
         $cantidad= 0;
         for ($i = 0; $i < count($concesionaria); $i++) {
             if ($concesionaria[$i][2] <= 6000) {
@@ -65,9 +65,13 @@
             }
         }
         echo "<p>Cantidad de autos que no superan los $6000 Dolares: " . $cantidad . "</p>";    
-        
+        }
         lista($concesionaria, $taza);
-        barato($concesionaria);
+        barato($concesionaria, $taza);
+        superar6mil($concesionaria);
+            echo "<footer style='position: fixed; bottom: 0; width: 100%; background-color: black; color: white; padding: 10px; text-align: center;'>";
+            echo "<p>Parcial 1 - Programación III - Johan Brito</p>";
+            echo "</footer>";
     ?>
 </body>
 </html>
