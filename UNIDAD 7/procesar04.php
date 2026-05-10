@@ -14,7 +14,6 @@
     $c = $_POST["tel"];
 
 
-    // Validación de la contraseña
     if ($b == "programar") {
         echo "<h2>Contraseña correcta</h2>";
         echo "<p>El correo ingresado es: $a </p>";

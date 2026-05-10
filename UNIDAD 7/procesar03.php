@@ -12,7 +12,6 @@
     $a = $_POST["mail"];
     $b = $_POST["pass"];
 
-    // Validación de la contraseña
     if ($b == "programar") {
         echo "<h2>Contraseña correcta</h2>";
         echo "<p>El correo ingresado es: $a </p>";
