@@ -13,7 +13,7 @@
     $concesionaria = array(
     array ("Chevrolet", "Aveo", 4700),
     array ("Chevrolet", "Sonic", 5900),
-    array ("Citroen", "C3", 35000),
+    array ("Citroen", "C3", 3500),
     array ("Fiat", "Cronos", 5600),
     array ("Ford", "Fiesta", 8700),
     array ("Toyota", "Yaris", 8100),
@@ -28,8 +28,8 @@
                 <tr>
                     <th>Marca</th>
                     <th>Modelo</th>
-                    <th>Precio Pesos</th>
                     <th>Precio Dolares</th>
+                    <th>Precio Pesos</th>
                 </tr>"; 
         for ($i= 0; $i < count($concesionaria); $i++) {
             echo "<tr>
@@ -52,7 +52,7 @@
             }
         }
 
-        echo "<p>El auto más barato es: " . $barato[0] . " " . $barato[1] . " Pesos: " . $barato[2] . "   Dolares:" . $barato[2]*$taza . "</p>";
+        echo "<p>El auto más barato es: " . $barato[0] . " " . $barato[1] . " Dolares: " . $barato[2] . "   Pesos:" . $barato[2]*$taza . "</p>";
     }
 
         function superar6mil($concesionaria) {
@@ -66,6 +66,23 @@
         }
         echo "<p>Cantidad de autos que no superan los $6000 Dolares: " . $cantidad . "</p>";    
         }
+
+        function costototal($concesionaria){
+            $prom =0;
+            $i=0;
+            for ($i ; $i < count($concesionaria); $i++) {
+            $prom +=$concesionaria[$i][2];
+            }
+                    echo "Promedio Costo total:" . $prom/($i-1);
+                    echo "contador: ". count($concesionaria);
+
+        }
+
+
+        costototal($concesionaria);
+        
+
+
         lista($concesionaria, $taza);
         barato($concesionaria, $taza);
         superar6mil($concesionaria);
@@ -75,3 +92,6 @@
     ?>
 </body>
 </html>
+
+
+Definir una funcion para calcular el promedia del costo total de autos (precio en dolares)  
