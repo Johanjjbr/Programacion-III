@@ -11,4 +11,3 @@ if (!$enlace) {
     exit();
 }
 ?>
-2. Proce

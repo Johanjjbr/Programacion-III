@@ -4,7 +4,6 @@ include("conexion.php");
 $mensaje = "";
 $tipo_alerta = "";
 
-// --- 1. PROCESAR ALTA O MODIFICACIÓN (POST) ---
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $form_nom  = $_POST["nom"];
     $form_dni  = $_POST["dni"];
@@ -31,11 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// --- 2. PROCESAR BAJA / ELIMINAR (GET) ---
 if (isset($_GET["eliminar"])) {
     $id_eliminar = $_GET["eliminar"];
-    // Importante: Si la persona tiene deportes asignados en la tabla 'realiza', 
-    // primero deberíamos eliminar esas relaciones para no tener errores de clave foránea.
+   
     $consulta_baja_relacion = "DELETE FROM realiza WHERE persona_id = $id_eliminar";
     mysqli_query($enlace, $consulta_baja_relacion);
 
@@ -50,7 +47,6 @@ if (isset($_GET["eliminar"])) {
     }
 }
 
-// --- 3. CARGAR DATOS PARA MODIFICAR (GET) ---
 $persona_editar = null;
 if (isset($_GET["editar"])) {
     $id_editar = $_GET["editar"];
@@ -61,7 +57,6 @@ if (isset($_GET["editar"])) {
     }
 }
 
-// --- 4. OBTENER TODAS LAS PERSONAS PARA EL LISTADO ---
 $consulta_lista = "SELECT * FROM persona ORDER BY id DESC";
 $resultado_lista = mysqli_query($enlace, $consulta_lista);
 ?>

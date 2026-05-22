@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario Ingreso de Datos</title>
+    <meta charset="utf-8">
+</head>
+<body >
+    <h1>Cargar nuevo Alumno del Instituto</h1>
+    <form method="post" action="instituto_insertar_procesa.php">
+        <table border="1">
+            <tr>
+                <td width="70"><b>Nombre</b></td>
+                <td width="300"> <input type="text" name="nom" value="" required> </td>
+            </tr>
+            <tr>
+                <td><b>DNI</b></td>
+                <td> <input type="text" name="dni" value="" required> </td>
+            </tr>
+            <tr>
+                <td><b>Celular</b></td>
+                <td> <input type="text" name="cel" value="" required> </td>
+            </tr>
+            <tr>
+                <td><b>Mail</b></td>
+                <td><input type="text" name="mail" value="" required></td>
+            </tr>
+            <tr>
+                <td><b>Dirección</b></td>
+                <td><input type="text" name="dir" value="" required> </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Cargar Alumno">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ingreso de Autos - Playa de Estacionamiento</title>
+    <meta charset="utf-8">
+</head>
+<body >
+    <h1>Registrar Nuevo Auto en la Playa</h1>
+    <form method="post" action="playa_insertar_procesa.php">
+        <table  border="1">
+            <tr>
+                <td width="70"><b>Patente</b></td>
+                <td width="300"> <input type="text" name="patente" value="" required> </td>
+            </tr>
+            <tr>
+                <td><b>Monto</b></td>
+                <td><input type="number" name="monto" value="" required></td>
+            </tr>
+            <tr>
+                <td><b>Horas</b></td>
+                <td><input type="number" name="horas" value="" required></td>
+            </tr>
+            <tr>
+                <td><b>Fecha</b></td>
+                <td><input type="date" name="fecha" value="" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" >
+                    <input type="submit" value="Registrar Auto">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

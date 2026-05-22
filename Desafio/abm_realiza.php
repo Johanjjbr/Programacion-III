@@ -1,16 +1,13 @@
 <?php
-// Variables para manejar la notificación
 $mensaje = "";
 $tipo_alerta = "";
 
 include("conexion.php");
 
-// --- 1. PROCESAR ALTA O MODIFICACIÓN (POST) ---
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $form_id_per = $_POST["id_per"];
     $form_id_dep = $_POST["id_dep"];
 
-    // Verificamos si estamos recibiendo los IDs antiguos (eso significa que es una Modificación)
     if (isset($_POST["old_id_per"]) && isset($_POST["old_id_dep"])) {
         $old_per = $_POST["old_id_per"];
         $old_dep = $_POST["old_id_dep"];
@@ -34,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// --- 2. PROCESAR BAJA / ELIMINAR (GET) ---
 if (isset($_GET["del_per"]) && isset($_GET["del_dep"])) {
     $del_per = $_GET["del_per"];
     $del_dep = $_GET["del_dep"];
@@ -50,7 +46,6 @@ if (isset($_GET["del_per"]) && isset($_GET["del_dep"])) {
     }
 }
 
-// --- 3. CARGAR DATOS PARA MODIFICAR (GET) ---
 $edit_per = null;
 $edit_dep = null;
 if (isset($_GET["edit_per"]) && isset($_GET["edit_dep"])) {
@@ -58,14 +53,12 @@ if (isset($_GET["edit_per"]) && isset($_GET["edit_dep"])) {
     $edit_dep = $_GET["edit_dep"];
 }
 
-// --- 4. CONSULTAS PARA LOS SELECTS Y EL LISTADO ---
 $consulta_personas = "SELECT id, nombre, dni FROM persona ORDER BY nombre ASC";
 $resultado_personas = mysqli_query($enlace, $consulta_personas);
 
 $consulta_deportes = "SELECT id, nombre, categoria FROM deporte ORDER BY nombre ASC";
 $resultado_deportes = mysqli_query($enlace, $consulta_deportes);
 
-// Consulta multitabla para mostrar los vínculos de forma legible en la tabla
 $consulta_lista = "SELECT r.persona_id, r.deporte_id, p.nombre AS persona_nom, p.dni, d.nombre AS deporte_nom, d.categoria 
                    FROM realiza r
                    INNER JOIN persona p ON r.persona_id = p.id
@@ -106,7 +99,6 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
                 <option value="" disabled <?php echo (!$edit_per) ? 'selected' : ''; ?>>-- Elija una persona --</option>
                 <?php
                 if ($resultado_personas && mysqli_num_rows($resultado_personas) > 0) {
-                    // Volvemos a colocar el puntero al inicio por si se usa varias veces
                     mysqli_data_seek($resultado_personas, 0); 
                     while ($persona = mysqli_fetch_assoc($resultado_personas)) {
                         $selected = ($edit_per == $persona['id']) ? 'selected' : '';
@@ -190,6 +182,5 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
 </html>
 
 <?php
-// Cerramos la conexión
 mysqli_close($enlace);
 ?>

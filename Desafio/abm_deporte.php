@@ -1,23 +1,19 @@
 <?php
-// Variables para manejar la notificación
 $mensaje = "";
 $tipo_alerta = "";
 
 include("conexion.php");
 
-// --- 1. PROCESAR ALTA O MODIFICACIÓN (POST) ---
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $form_nom = $_POST["nom_deporte"];
     $form_desc = $_POST["desc"];
     $form_cat = $_POST["cat"];
 
     if (isset($_POST["id_editar"]) && !empty($_POST["id_editar"])) {
-        // Es una Modificación (UPDATE)
         $id_edit = $_POST["id_editar"];
         $consulta = "UPDATE deporte SET nombre='$form_nom', descripcion='$form_desc', categoria='$form_cat' WHERE id=$id_edit";
         $txt_exito = "Deporte modificado con éxito.";
     } else {
-        // Es un Alta (INSERT)
         $consulta = "INSERT INTO deporte (nombre, descripcion, categoria) VALUES ('$form_nom', '$form_desc', '$form_cat')";
         $txt_exito = "Deporte registrado con éxito.";
     }
@@ -31,10 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// --- 2. PROCESAR BAJA / ELIMINAR (GET) ---
 if (isset($_GET["eliminar"])) {
     $id_eliminar = $_GET["eliminar"];
-    // Al igual que con personas, primero eliminamos las relaciones en 'realiza' para evitar errores de clave foránea
     $consulta_baja_relacion = "DELETE FROM realiza WHERE id_deporte = $id_eliminar";
     mysqli_query($enlace, $consulta_baja_relacion);
 
@@ -49,7 +43,6 @@ if (isset($_GET["eliminar"])) {
     }
 }
 
-// --- 3. CARGAR DATOS PARA MODIFICAR (GET) ---
 $deporte_editar = null;
 if (isset($_GET["editar"])) {
     $id_editar = $_GET["editar"];
@@ -60,7 +53,6 @@ if (isset($_GET["editar"])) {
     }
 }
 
-// --- 4. OBTENER TODOS LOS DEPORTES PARA EL LISTADO ---
 $consulta_lista = "SELECT * FROM deporte ORDER BY id DESC";
 $resultado_lista = mysqli_query($enlace, $consulta_lista);
 ?>
@@ -165,6 +157,5 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
 </body>
 </html>
 <?php 
-// Cerramos la conexión al final del archivo
 mysqli_close($enlace); 
 ?>

@@ -1,7 +1,6 @@
 <?php
 include("conexion.php");
 
-// Variables para los listados dinámicos
 $dni_buscado = "";
 $deportes_por_dni = null;
 $cant_deportes = 0;
@@ -10,18 +9,15 @@ $nombre_persona_dni = "";
 $deporte_seleccionado = "";
 $personas_por_deporte = null;
 
-// Requerimiento 4.a
 if (isset($_GET["dni_buscar"]) && !empty($_GET["dni_buscar"])) {
     $dni_buscado = $_GET["dni_buscar"];
     
-    // Primero validamos si existe la persona y obtenemos el nombre
     $q_per = "SELECT nombre FROM persona WHERE dni = '$dni_buscado'";
     $res_per = mysqli_query($enlace, $q_per);
     if($res_per && mysqli_num_rows($res_per) > 0) {
         $p_data = mysqli_fetch_assoc($res_per);
         $nombre_persona_dni = $p_data['nombre'];
         
-        // Consulta multitabla para saber qué deportes practica
         $consulta_4a = "SELECT d.nombre, d.categoria 
                         FROM realiza r
                         INNER JOIN persona p ON r.persona_id = p.id
@@ -34,7 +30,6 @@ if (isset($_GET["dni_buscar"]) && !empty($_GET["dni_buscar"])) {
     }
 }
 
-// Requerimiento 4.b
 if (isset($_GET["deporte_id"]) && !empty($_GET["deporte_id"])) {
     $deporte_seleccionado = $_GET["deporte_id"];
     
@@ -46,7 +41,6 @@ if (isset($_GET["deporte_id"]) && !empty($_GET["deporte_id"])) {
     $personas_por_deporte = mysqli_query($enlace, $consulta_4b);
 }
 
-// Requerimiento 4.c: Agrupamos en realiza, contamos, ordenamos descendentemente y limitamos a 1
 $consulta_4c = "SELECT d.nombre, COUNT(r.deporte_id) as total
                 FROM realiza r
                 INNER JOIN deporte d ON r.deporte_id = d.id
@@ -56,7 +50,6 @@ $consulta_4c = "SELECT d.nombre, COUNT(r.deporte_id) as total
 $res_4c = mysqli_query($enlace, $consulta_4c);
 $deporte_top = ($res_4c && mysqli_num_rows($res_4c) > 0) ? mysqli_fetch_assoc($res_4c) : null;
 
-// Listado auxiliar de deportes para rellenar el select del filtro 4.b
 $listado_deportes_select = mysqli_query($enlace, "SELECT id, nombre FROM deporte ORDER BY nombre ASC");
 ?>
 <!DOCTYPE html>
