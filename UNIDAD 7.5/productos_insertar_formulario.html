@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Supermercado - Cargar Producto</title>
+</head>
+<body>
+    <h1>Agregar Nuevo Producto</h1>
+    <form action="productos_insertar_procesa.php" method="POST">
+        <table>
+            <tr>
+                <td>Nombre del producto:</td>
+                <td><input type="text" name="nombre" required></td>
+            </tr>
+            <tr>
+                <td>Precio:</td>
+                <td><input type="text" name="precio" required></td>
+            </tr>
+            <tr>
+                <td>Cantidad en Stock:</td>
+                <td><input type="number" name="cant" required></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Guardar">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <footer style='position: fixed; bottom: 0; width: 100%; text-align: center;'>
+        <p> Johan Brito</p>
+        <p> Programacion 3 | TSDS</p>
+        <p>Curso: 2da 1ra | Mayo 2026</p>
+    </footer>
+</body>
+</html>
