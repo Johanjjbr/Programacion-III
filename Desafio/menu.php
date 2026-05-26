@@ -13,9 +13,9 @@
                         Menú de Navegación
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="abm_personas.php">Personas (ABM)</a></li>
-                        <li><a class="dropdown-item" href="abm_deporte.php">Deportes (ABM)</a></li>
-                        <li><a class="dropdown-item" href="abm_realiza.php">Relaciones (ABM)</a></li>
+                        <li><a class="dropdown-item" href="abm_personas.php">Personas </a></li>
+                        <li><a class="dropdown-item" href="abm_deporte.php">Deportes </a></li>
+                        <li><a class="dropdown-item" href="abm_realiza.php">Relaciones</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="listado.php">Listados e Informes</a></li>
                     </ul>
