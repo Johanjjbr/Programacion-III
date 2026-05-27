@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body bgcolor="#DDE0F0">
-    <h1>Listado de Alumnos del Instituto</h1>
+    <h1>Listado de Alumnos</h1>
     <?php
     $enlace = mysqli_connect("localhost", "root", "", "instituto");
     $resultado = mysqli_query($enlace, "SELECT * FROM alumno");

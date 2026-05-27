@@ -5,7 +5,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body >
-    <h1>Gestión de Turnos - Playa de Estacionamiento</h1>
+    <h1>Playa</h1>
     <?php
     $enlace = mysqli_connect("localhost", "root", "", "playa");
     $resultado = mysqli_query($enlace, "SELECT * FROM turno");

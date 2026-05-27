@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Formulario Modificar Datos</title>
+    <title>Formulario</title>
     <meta charset="utf-8">
 </head>
 <body bgcolor="#D2EBF7">
