@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-05-2026 a las 22:08:28
+-- Tiempo de generación: 27-05-2026 a las 21:41:21
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -62,8 +62,9 @@ CREATE TABLE `persona` (
 
 INSERT INTO `persona` (`id`, `dni`, `nombre`, `edad`, `genero`) VALUES
 (1, '96413423', 'Johan Brito', 26, 'masculino'),
-(4, '964134233', 'Johan Brito', 26, 'masculino'),
-(6, '9641342322', 'Johan Brito', 33, 'masculino');
+(4, '9', 'Johan Brito', 26, 'masculino'),
+(6, '9641342322', 'Johan Brito', 33, 'masculino'),
+(9, '123456551111', 'Arremangala ', 55, 'femenino');
 
 -- --------------------------------------------------------
 
@@ -82,7 +83,9 @@ CREATE TABLE `realiza` (
 
 INSERT INTO `realiza` (`persona_id`, `deporte_id`) VALUES
 (4, 1),
-(6, 3);
+(6, 3),
+(9, 1),
+(9, 3);
 
 --
 -- Índices para tablas volcadas
@@ -122,7 +125,7 @@ ALTER TABLE `deporte`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas

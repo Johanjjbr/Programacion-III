@@ -102,7 +102,7 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
                     mysqli_data_seek($resultado_personas, 0); 
                     while ($persona = mysqli_fetch_assoc($resultado_personas)) {
                         $selected = ($edit_per == $persona['id']) ? 'selected' : '';
-                        echo "<option value='" . $persona['id'] . "' $selected>" . $persona['nombre'] . " (DNI: " . $persona['dni'] . ")</option>";
+                        echo "<option value='" . $persona['id'] . "' $selected>" . $persona['nombre'] . " dni: " . $persona['dni'] . "</option>";
                     }
                 } else {
                     echo "<option value='' disabled>No hay personas registradas</option>";
