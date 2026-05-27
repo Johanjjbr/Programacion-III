@@ -10,15 +10,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $form_edad = $_POST["edad"];
     $form_gen  = $_POST["genero"];
     
-    if (isset($_POST["id_editar"]) && !empty($_POST["id_editar"])) {
-        // Es una Modificación (UPDATE)
-        $id_edit = $_POST["id_editar"];
+    if (isset($_POST["editado"]) && !empty($_POST["editado"])) {
+// Modificacion
+        $id_edit = $_POST["editado"];
         $consulta = "UPDATE persona SET nombre='$form_nom', dni='$form_dni', edad=$form_edad, genero='$form_gen' WHERE id=$id_edit";
-        $txt_exito = "Persona modificada con éxito.";
+        $txt_exito = "Persona modificada";
     } else {
-        // Es un Alta (INSERT)
+// Alta
         $consulta = "INSERT INTO persona (nombre, dni, edad, genero) VALUES ('$form_nom', '$form_dni', $form_edad, '$form_gen')";
-        $txt_exito = "Persona registrada con éxito.";
+        $txt_exito = "Persona registrada";
     }
 
     if (mysqli_query($enlace, $consulta)) {
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tipo_alerta = "danger";
     }
 }
-
+// Codigo para Eliminar
 if (isset($_GET["eliminar"])) {
     $id_eliminar = $_GET["eliminar"];
    
@@ -39,18 +39,18 @@ if (isset($_GET["eliminar"])) {
     $consulta_baja = "DELETE FROM persona WHERE id = $id_eliminar";
     
     if (mysqli_query($enlace, $consulta_baja)) {
-        $mensaje = "Persona eliminada con éxito.";
+        $mensaje = "Persona eliminada";
         $tipo_alerta = "warning";
     } else {
         $mensaje = "Error al eliminar: " . mysqli_error($enlace);
         $tipo_alerta = "danger";
     }
 }
-
+// Codigo para Editar 
 $persona_editar = null;
 if (isset($_GET["editar"])) {
-    $id_editar = $_GET["editar"];
-    $consulta_buscar = "SELECT * FROM persona WHERE id = $id_editar";
+    $editado = $_GET["editar"];
+    $consulta_buscar = "SELECT * FROM persona WHERE id = $editado";
     $res_buscar = mysqli_query($enlace, $consulta_buscar);
     if ($res_buscar && mysqli_num_rows($res_buscar) > 0) {
         $persona_editar = mysqli_fetch_assoc($res_buscar);
@@ -64,7 +64,7 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>ABM Personas - Desafío</title>
+    <title>Personas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container mt-5">
@@ -82,7 +82,7 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
 
     <form action="abm_personas.php" method="POST" class="card p-4 shadow mb-5">
         <?php if ($persona_editar): ?>
-            <input type="hidden" name="id_editar" value="<?php echo $persona_editar['id']; ?>">
+            <input type="hidden" name="editado" value="<?php echo $persona_editar['id']; ?>">
         <?php endif; ?>
 
         <div class="mb-3">
@@ -110,7 +110,7 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
                 <?php echo $persona_editar ? "Guardar Cambios" : "Registrar Persona"; ?>
             </button>
             <?php if ($persona_editar): ?>
-                <a href="abm_personas.php" class="btn btn-secondary">Cancelar Edición</a>
+                <a href="abm_personas.php" class="btn btn-secondary">Cancelar Edicion</a>
             <?php endif; ?>
         </div>
     </form>
@@ -155,6 +155,8 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
     <footer class="mt-5 py-3 bg-light text-center border-top">
         <p><strong>Programador:</strong> Johan Brito | <strong>Fecha:</strong> Mayo 2026</p>
         <p>Programación 3 - TSDS</p>
+        <--- Todos los estilos fueron hecho con IA >
+
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

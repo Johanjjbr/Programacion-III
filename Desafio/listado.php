@@ -5,7 +5,6 @@ $dni_buscado = "";
 $deportes_por_dni = null;
 $cant_deportes = 0;
 $nombre_persona_dni = "";
-
 $deporte_seleccionado = "";
 $personas_por_deporte = null;
 
@@ -18,12 +17,12 @@ if (isset($_GET["dni_buscar"]) && !empty($_GET["dni_buscar"])) {
         $p_data = mysqli_fetch_assoc($res_per);
         $nombre_persona_dni = $p_data['nombre'];
         
-        $consulta_4a = "SELECT d.nombre, d.categoria 
+        $dnibuscar = "SELECT d.nombre, d.categoria 
                         FROM realiza r
                         INNER JOIN persona p ON r.persona_id = p.id
                         INNER JOIN deporte d ON r.deporte_id = d.id
                         WHERE p.dni = '$dni_buscado'";
-        $deportes_por_dni = mysqli_query($enlace, $consulta_4a);
+        $deportes_por_dni = mysqli_query($enlace, $dnibuscar);
         $cant_deportes = mysqli_num_rows($deportes_por_dni);
     } else {
         $nombre_persona_dni = "No encontrada";
@@ -33,21 +32,21 @@ if (isset($_GET["dni_buscar"]) && !empty($_GET["dni_buscar"])) {
 if (isset($_GET["deporte_id"]) && !empty($_GET["deporte_id"])) {
     $deporte_seleccionado = $_GET["deporte_id"];
     
-    $consulta_4b = "SELECT p.nombre, p.dni, p.edad 
+    $deportebuscar = "SELECT p.nombre, p.dni, p.edad 
                     FROM realiza r
                     INNER JOIN deporte d ON r.deporte_id = d.id
                     INNER JOIN persona p ON r.persona_id = p.id
                     WHERE d.id = $deporte_seleccionado";
-    $personas_por_deporte = mysqli_query($enlace, $consulta_4b);
+    $personas_por_deporte = mysqli_query($enlace, $deportebuscar);
 }
 
-$consulta_4c = "SELECT d.nombre, COUNT(r.deporte_id) as total
+$deportemas = "SELECT d.nombre, COUNT(r.deporte_id) as total
                 FROM realiza r
                 INNER JOIN deporte d ON r.deporte_id = d.id
                 GROUP BY r.deporte_id
                 ORDER BY total DESC
                 LIMIT 1";
-$res_4c = mysqli_query($enlace, $consulta_4c);
+$res_4c = mysqli_query($enlace, $deportemas);
 $deporte_top = ($res_4c && mysqli_num_rows($res_4c) > 0) ? mysqli_fetch_assoc($res_4c) : null;
 
 $listado_deportes_select = mysqli_query($enlace, "SELECT id, nombre FROM deporte ORDER BY nombre ASC");
@@ -69,7 +68,7 @@ $listado_deportes_select = mysqli_query($enlace, "SELECT id, nombre FROM deporte
         <div class="col-12">
             <div class="card text-center bg-light shadow-sm border-primary">
                 <div class="card-header bg-primary text-white">
-                    <strong>Requerimiento 4.c: Estadísticas Globales</strong>
+                    <strong>Estadísticas Globales</strong>
                 </div>
                 <div class="card-body">
                     <h4 class="card-title">Deporte más Practicado actualmente:</h4>

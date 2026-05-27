@@ -9,13 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $form_desc = $_POST["desc"];
     $form_cat = $_POST["cat"];
 
-    if (isset($_POST["id_editar"]) && !empty($_POST["id_editar"])) {
-        $id_edit = $_POST["id_editar"];
+    if (isset($_POST["editado"]) && !empty($_POST["editado"])) {
+        $id_edit = $_POST["editado"];
         $consulta = "UPDATE deporte SET nombre='$form_nom', descripcion='$form_desc', categoria='$form_cat' WHERE id=$id_edit";
-        $txt_exito = "Deporte modificado con éxito.";
+        $txt_exito = "Deporte modificado";
     } else {
         $consulta = "INSERT INTO deporte (nombre, descripcion, categoria) VALUES ('$form_nom', '$form_desc', '$form_cat')";
-        $txt_exito = "Deporte registrado con éxito.";
+        $txt_exito = "Deporte registrado";
     }
 
     if (mysqli_query($enlace, $consulta)) {
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tipo_alerta = "danger";
     }
 }
-
+//Eliminar
 if (isset($_GET["eliminar"])) {
     $id_eliminar = $_GET["eliminar"];
     $consulta_baja_relacion = "DELETE FROM realiza WHERE id_deporte = $id_eliminar";
@@ -42,11 +42,11 @@ if (isset($_GET["eliminar"])) {
         $tipo_alerta = "danger";
     }
 }
-
+//Editar
 $deporte_editar = null;
 if (isset($_GET["editar"])) {
-    $id_editar = $_GET["editar"];
-    $consulta_buscar = "SELECT * FROM deporte WHERE id = $id_editar";
+    $editado = $_GET["editar"];
+    $consulta_buscar = "SELECT * FROM deporte WHERE id = $editado";
     $res_buscar = mysqli_query($enlace, $consulta_buscar);
     if ($res_buscar && mysqli_num_rows($res_buscar) > 0) {
         $deporte_editar = mysqli_fetch_assoc($res_buscar);
@@ -60,7 +60,7 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>ABM Deportes - Desafío</title>
+    <title>Deportes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container mt-5">
@@ -78,7 +78,7 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
 
     <form action="abm_deporte.php" method="POST" class="card p-4 shadow mb-5">
         <?php if ($deporte_editar): ?>
-            <input type="hidden" name="id_editar" value="<?php echo $deporte_editar['id']; ?>">
+            <input type="hidden" name="editado" value="<?php echo $deporte_editar['id']; ?>">
         <?php endif; ?>
 
         <div class="mb-3">
@@ -151,6 +151,7 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
     <footer class="mt-5 py-3 bg-light text-center border-top">
         <p><strong>Programador:</strong> Johan Brito | <strong>Fecha:</strong> Mayo 2026</p>
         <p>Programación 3 - TSDS</p>
+        <--- Todos los estilos fueron hecho con IA >
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

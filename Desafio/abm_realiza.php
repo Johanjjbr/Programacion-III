@@ -70,7 +70,7 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>ABM Asignaciones - Desafío</title>
+    <title>Asignaciones</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container mt-5">
@@ -175,6 +175,8 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
     <footer class="mt-5 py-3 bg-light text-center border-top">
         <p><strong>Programador:</strong> Johan Brito | <strong>Fecha:</strong> Mayo 2026</p>
         <p>Programación 3 - TSDS</p>
+        <--- Todos los estilos fueron hecho con IA >
+
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
