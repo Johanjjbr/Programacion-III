@@ -11,8 +11,7 @@ $consulta = "UPDATE turno SET patente='$pat', fecha='$fec', horas='$hs', monto='
 
 if (mysqli_query($enlace, $consulta)) {
     echo "<div class='container mt-5 alert alert-success text-center'>";
-    echo "<h2>¡Turno modificado correctamente!</h2>";
-    echo "<p>Los nuevos datos para el ID $id han sido guardados.</p>";
+    echo "<h2>Turno modificado </h2>";
     echo "<a href='playa_accion_formulario.php' class='btn btn-outline-success'>Volver al Listado</a>";
     echo "</div>";
 } else {

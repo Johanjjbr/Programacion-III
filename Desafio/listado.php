@@ -168,6 +168,7 @@ $listado_deportes_select = mysqli_query($enlace, "SELECT id, nombre FROM deporte
     <footer class="mt-5 py-3 bg-light text-center border-top">
         <p><strong>Programador:</strong> Johan Brito | <strong>Fecha:</strong> Mayo 2026</p>
         <p>Programación 3 - TSDS</p>
+        <!-- Todos los estilos fueron hechos con IA -->
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
