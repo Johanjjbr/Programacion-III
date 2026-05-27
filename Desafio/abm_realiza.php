@@ -144,7 +144,7 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
         <table class="table table-striped table-hover align-middle">
             <thead class="table-dark">
                 <tr>
-                    <th>Persona (DNI)</th>
+                    <th>Persona</th>
                     <th>Deporte</th>
                     <th>Categoría</th>
                     <th class="text-center">Acciones</th>
