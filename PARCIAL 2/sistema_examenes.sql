@@ -1,73 +1,188 @@
-CREATE DATABASE IF NOT EXISTS sistema_examenes
-    DEFAULT CHARACTER SET utf8mb4
-    DEFAULT COLLATE utf8mb4_general_ci;
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 10-06-2026 a las 17:25:31
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
-USE sistema_examenes;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-CREATE TABLE IF NOT EXISTS usuarios (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    usuario VARCHAR(50) NOT NULL,
-    clave VARCHAR(100) NOT NULL,
-    perfil ENUM('Administrativo', 'Operador') NOT NULL,
-    nombre_completo VARCHAR(100) NOT NULL,
-    PRIMARY KEY (id),
-    UNIQUE KEY usuario (usuario)
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `sistema_examenes`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `alumnos`
+--
+
+CREATE TABLE `alumnos` (
+  `id` int(11) NOT NULL,
+  `dni` varchar(15) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `apellido` varchar(100) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `telefono` varchar(50) DEFAULT NULL,
+  `direccion` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE IF NOT EXISTS alumnos (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    nombre VARCHAR(50) NOT NULL,
-    apellido VARCHAR(50) NOT NULL,
-    dni VARCHAR(15) NOT NULL,
-    direccion VARCHAR(100) DEFAULT NULL,
-    telefono VARCHAR(20) DEFAULT NULL,
-    email VARCHAR(80) DEFAULT NULL,
-    PRIMARY KEY (id),
-    UNIQUE KEY dni (dni)
+--
+-- Volcado de datos para la tabla `alumnos`
+--
+
+INSERT INTO `alumnos` (`id`, `dni`, `nombre`, `apellido`, `email`, `telefono`, `direccion`) VALUES
+(1, '96413423', 'Johan', 'Brito', 'johanjesus1arg@gmail.com', '02644622855', 'CAUCETE - BARRIO ENOE MENDOZA - M/K C/2'),
+(2, '123415', 'Leo', 'Caprio', 'johanjesus1arg@gmail.com', '04123800706', 'Riverdale');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `inscripciones`
+--
+
+CREATE TABLE `inscripciones` (
+  `id` int(11) NOT NULL,
+  `id_alumno` int(11) NOT NULL,
+  `id_mesa` int(11) NOT NULL,
+  `fecha_inscripcion` date NOT NULL,
+  `asistencia` varchar(15) DEFAULT NULL,
+  `nota` int(11) DEFAULT NULL
+) ;
+
+--
+-- Volcado de datos para la tabla `inscripciones`
+--
+
+INSERT INTO `inscripciones` (`id`, `id_alumno`, `id_mesa`, `fecha_inscripcion`, `asistencia`, `nota`) VALUES
+(1, 1, 2, '0000-00-00', NULL, NULL),
+(3, 2, 2, '0000-00-00', NULL, NULL),
+(4, 1, 4, '0000-00-00', 'No', 10),
+(5, 2, 3, '0000-00-00', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mesas_examen`
+--
+
+CREATE TABLE `mesas_examen` (
+  `id` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `materia` varchar(100) NOT NULL,
+  `tipo` enum('Regular','Libre') NOT NULL,
+  `titular` varchar(100) NOT NULL,
+  `pvocal1` varchar(100) NOT NULL,
+  `pvocal2` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE IF NOT EXISTS mesas_examen (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    fecha DATE NOT NULL,
-    materia VARCHAR(80) NOT NULL,
-    tipo ENUM('regular', 'libre') NOT NULL,
-    titular VARCHAR(100) NOT NULL,
-    vocal1 VARCHAR(100) NOT NULL,
-    vocal2 VARCHAR(100) NOT NULL,
-    PRIMARY KEY (id)
+--
+-- Volcado de datos para la tabla `mesas_examen`
+--
+
+INSERT INTO `mesas_examen` (`id`, `fecha`, `materia`, `tipo`, `titular`, `pvocal1`, `pvocal2`) VALUES
+(2, '2026-06-18', 'Programacion 3', 'Libre', 'Alicia Sepulpeda (gemela)', 'Alguien mas2', 'otro por ahi3'),
+(3, '2026-06-18', 'Programacion 2', 'Regular', 'Alicia Sepulpeda', 'Alguien mas', 'otro por ahi'),
+(4, '2026-06-08', 'Programacion 3', 'Libre', 'Johan Brito Profesor', 'El gemelo', 'El otro gemelo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `usuario` varchar(50) NOT NULL,
+  `clave` varchar(255) NOT NULL,
+  `nombre_completo` varchar(100) NOT NULL,
+  `perfil` enum('Administrativo','Operador') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE IF NOT EXISTS inscripciones (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    alumno_id INT(11) NOT NULL,
-    mesa_id INT(11) NOT NULL,
-    asistencia VARCHAR(2) DEFAULT NULL,
-    nota DECIMAL(4,2) DEFAULT NULL,
-    PRIMARY KEY (id),
-    KEY alumno_id (alumno_id),
-    KEY mesa_id (mesa_id),
-    CONSTRAINT inscripciones_ibfk_1 FOREIGN KEY (alumno_id) REFERENCES alumnos (id) ON DELETE CASCADE,
-    CONSTRAINT inscripciones_ibfk_2 FOREIGN KEY (mesa_id) REFERENCES mesas_examen (id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+--
+-- Volcado de datos para la tabla `usuarios`
+--
 
-INSERT INTO usuarios (usuario, clave, perfil, nombre_completo) VALUES
-('admin', '123456', 'Administrativo', 'Juan Pérez (Admin)'),
-('operador', '123456', 'Operador', 'María Gómez (Operador)');
+INSERT INTO `usuarios` (`usuario`, `clave`, `nombre_completo`, `perfil`) VALUES
+('admin', 'admin', 'Johan Jesus Brito Rodriguez', 'Administrativo'),
+('lucas_diaz', 'op789', 'Lucas Díaz', 'Operador'),
+('maria_lopez', 'op456', 'María López', 'Operador'),
+('operador', 'op123', 'Carlos Gómez', 'Operador');
 
-INSERT INTO alumnos (nombre, apellido, dni, direccion, telefono, email) VALUES
-('Carlos', 'López', '30123456', 'Av. Siempre Viva 742', '1145678901', 'carlos.lopez@email.com'),
-('Ana', 'Martínez', '31234567', 'Calle Falsa 123', '1156789012', 'ana.martinez@email.com'),
-('Pedro', 'Ramírez', '32345678', 'Belgrano 500', '1167890123', 'pedro.ramirez@email.com'),
-('Laura', 'Fernández', '33456789', 'San Martín 800', '1178901234', 'laura.fernandez@email.com'),
-('Santiago', 'García', '34567890', 'Rivadavia 300', '1189012345', 'santiago.garcia@email.com');
+--
+-- Índices para tablas volcadas
+--
 
-INSERT INTO mesas_examen (fecha, materia, tipo, titular, vocal1, vocal2) VALUES
-('2026-05-15', 'Programación I', 'regular', 'Prof. Gómez', 'Prof. López', 'Prof. Díaz'),
-('2026-06-10', 'Base de Datos', 'libre', 'Prof. Martínez', 'Prof. García', 'Prof. Rodríguez'),
-('2026-07-20', 'Matemática', 'regular', 'Prof. Fernández', 'Prof. Álvarez', 'Prof. Pérez'),
-('2026-08-05', 'Programación II', 'libre', 'Prof. Díaz', 'Prof. Gómez', 'Prof. López');
+--
+-- Indices de la tabla `alumnos`
+--
+ALTER TABLE `alumnos`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `dni` (`dni`);
 
-INSERT INTO inscripciones (alumno_id, mesa_id, asistencia, nota) VALUES
-(1, 1, 'Si', 8.50),
-(2, 1, 'No', NULL),
-(3, 2, 'Si', 6.00);
+--
+-- Indices de la tabla `inscripciones`
+--
+ALTER TABLE `inscripciones`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_alumno` (`id_alumno`),
+  ADD KEY `id_mesa` (`id_mesa`);
+
+--
+-- Indices de la tabla `mesas_examen`
+--
+ALTER TABLE `mesas_examen`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`usuario`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `alumnos`
+--
+ALTER TABLE `alumnos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `inscripciones`
+--
+ALTER TABLE `inscripciones`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `mesas_examen`
+--
+ALTER TABLE `mesas_examen`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `inscripciones`
+--
+ALTER TABLE `inscripciones`
+  ADD CONSTRAINT `inscripciones_ibfk_1` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `inscripciones_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `mesas_examen` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
