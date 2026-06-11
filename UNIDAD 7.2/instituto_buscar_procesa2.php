@@ -19,16 +19,16 @@
         $db_password = "";
         $db_name = "instituto";
 
-        $enlace = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+        $datos = mysqli_connect($db_host, $db_user, $db_password, $db_name);
         $sql = "SELECT * FROM alumno where dni = $dni";
 
-        if (!$enlace) {
+        if (!$datos) {
             echo "Error de conexión: " . mysqli_connect_error();
         } 
 
     $consulta = "INSERT INTO alumno (nombre, direccion, telefono, mail, dni) VALUES ('$nombre', '$direccion', '$telefono', '$email', '$dni')";
 
-    if (mysqli_query($enlace, $consulta)) {
+    if (mysqli_query($datos, $consulta)) {
         echo "Nuevo registro creado exitosamente";
            echo "<table border='1'>";
                 echo"<tr>";
@@ -48,11 +48,11 @@
                         echo "</tr>";
             echo "</table>";
     } else {
-        echo "Error al crear el registro: " . mysqli_error($enlace);
+        echo "Error al crear el registro: " . mysqli_error($datos);
     }
 
 
-                    mysqli_close($enlace);
+                    mysqli_close($datos);
 
 
     

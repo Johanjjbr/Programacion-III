@@ -11,9 +11,9 @@ $db_user = "root";
 $db_pass = "";
 $db_nombre = "sistema_examenes";
 
-$enlace = mysqli_connect($db_host, $db_user, $db_pass, $db_nombre);
+$datos = mysqli_connect($db_host, $db_user, $db_pass, $db_nombre);
 
-if (!$enlace) {
+if (!$datos) {
     echo "Error: No se pudo conectar a la base de datos " . $db_nombre . PHP_EOL;
     exit();
 }

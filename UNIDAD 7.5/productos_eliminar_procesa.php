@@ -1,15 +1,15 @@
 <?php
 $form_id = $_POST["id"];
-$enlace = mysqli_connect("localhost", "root", "", "supermercado");
+$datos = mysqli_connect("localhost", "root", "", "supermercado");
 
 $consulta = "DELETE FROM producto WHERE id='$form_id'";
 
-if (mysqli_query($enlace, $consulta)) {
+if (mysqli_query($datos, $consulta)) {
     echo "<h1>Producto eliminado</h1>";
 } else {
-    echo "Error al eliminar: " . mysqli_error($enlace);
+    echo "Error al eliminar: " . mysqli_error($datos);
 }
-mysqli_close($enlace);
+mysqli_close($datos);
 
 
 ?>

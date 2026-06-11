@@ -11,14 +11,14 @@
     $db_pass = "";
     $db_nombre = "instituto";
 
-    $enlace = mysqli_connect($db_host, $db_user, $db_pass, $db_nombre);
-    if (!$enlace) {
+    $datos = mysqli_connect($db_host, $db_user, $db_pass, $db_nombre);
+    if (!$datos) {
         echo "Error: No se pudo conectar a $db_nombre ." . PHP_EOL;
         exit();
     }
 
     $consulta = "SELECT * FROM alumno";
-    $resultado = mysqli_query($enlace, $consulta);
+    $resultado = mysqli_query($datos, $consulta);
 
     echo "<h3>Total de alumnos cargados: " . mysqli_num_rows($resultado) . "</h3>";
     ?>
@@ -51,7 +51,7 @@
             echo "</tr>";
         }
         mysqli_free_result($resultado);
-        mysqli_close($enlace);
+        mysqli_close($datos);
         ?>
     </table>
 

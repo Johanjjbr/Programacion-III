@@ -15,11 +15,11 @@
         $db_password = "";
         $db_name = "instituto";
 
-        $enlace = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+        $datos = mysqli_connect($db_host, $db_user, $db_password, $db_name);
         $sql = "SELECT * FROM alumno where dni = $dni";
-        $resultado = mysqli_query($enlace, $sql);
+        $resultado = mysqli_query($datos, $sql);
 
-        if (!$enlace) {
+        if (!$datos) {
             echo "Error de conexión: " . mysqli_connect_error();
         } 
 
@@ -52,7 +52,7 @@
             echo "</table>";
 
                     mysqli_free_result($resultado);
-                    mysqli_close($enlace);
+                    mysqli_close($datos);
 
 
     }

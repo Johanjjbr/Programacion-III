@@ -12,18 +12,18 @@
     $db_pass = ""; 
     $db_nombre = "playa";
 
-    $enlace = mysqli_connect($db_host, $db_user, $db_pass, $db_nombre);
+    $datos = mysqli_connect($db_host, $db_user, $db_pass, $db_nombre);
 
     $consulta = "DELETE FROM turno WHERE id_turno='$form_id'";
 
-    if (mysqli_query($enlace, $consulta)) {
+    if (mysqli_query($datos, $consulta)) {
         echo "<p>Conexión exitosa a la base de datos: $db_nombre </p>";
         echo "<p><strong>El vehículo con ID $form_id ha sido borrado</strong></p>";
     } else {
-        echo "Error al intentar eliminar: " . mysqli_error($enlace);
+        echo "Error al intentar eliminar: " . mysqli_error($datos);
     }
 
-    mysqli_close($enlace);
+    mysqli_close($datos);
     ?>
     <br>
     <a href="playa_eliminar_formulario.php">Volver al listado de playa</a>

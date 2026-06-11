@@ -18,9 +18,9 @@
     $db_pass = ""; 
     $db_nombre = "instituto";
 
-    $enlace = mysqli_connect($db_host, $db_user, $db_pass, $db_nombre);
+    $datos = mysqli_connect($db_host, $db_user, $db_pass, $db_nombre);
 
-    if (!$enlace) {
+    if (!$datos) {
         echo "Error: No se pudo conectar a la base de datos $db_nombre." . PHP_EOL;
         exit();
     }
@@ -28,7 +28,7 @@
     $consulta = "INSERT INTO alumno (nombre, dni, telefono, mail, direccion) 
                  VALUES ('$nom', '$dni', '$cel', '$mail', '$dir')";
 
-    if (!mysqli_query($enlace, $consulta)) {
+    if (!mysqli_query($datos, $consulta)) {
         echo "<p>Error: La consulta sql tiene problema, verificar.</p> <br>";
         echo "<p>$consulta</p>";
         exit();
@@ -56,7 +56,7 @@
         echo "<td>$dir</td>";
         echo "</tr>";
 
-        mysqli_close($enlace); 
+        mysqli_close($datos); 
         ?>
     </table>
 

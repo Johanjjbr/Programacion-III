@@ -22,12 +22,12 @@ $mensaje = "";
 $tipo_alerta = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $form_fec    = mysqli_real_escape_string($enlace, $_POST["fec"]);
-    $form_mat    = mysqli_real_escape_string($enlace, $_POST["mat"]);
-    $form_tipo   = mysqli_real_escape_string($enlace, $_POST["tipo"]);
-    $form_titular = mysqli_real_escape_string($enlace, $_POST["titular"]);
-    $form_pvocal1 = mysqli_real_escape_string($enlace, $_POST["pvocal1"]);
-    $form_pvocal2 = mysqli_real_escape_string($enlace, $_POST["pvocal2"]);
+    $form_fec    = mysqli_real_escape_string($datos, $_POST["fec"]);
+    $form_mat    = mysqli_real_escape_string($datos, $_POST["mat"]);
+    $form_tipo   = mysqli_real_escape_string($datos, $_POST["tipo"]);
+    $form_titular = mysqli_real_escape_string($datos, $_POST["titular"]);
+    $form_pvocal1 = mysqli_real_escape_string($datos, $_POST["pvocal1"]);
+    $form_pvocal2 = mysqli_real_escape_string($datos, $_POST["pvocal2"]);
 
     if (isset($_POST["editado"]) && !empty($_POST["editado"])) {
         $id_edit = $_POST["editado"];
@@ -38,11 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $txt_exito = "Mesa registrada";
     }
 
-    if (mysqli_query($enlace, $consulta)) {
+    if (mysqli_query($datos, $consulta)) {
         $mensaje = $txt_exito;
         $tipo_alerta = "success";
     } else {
-        $mensaje = "Error en la operación: " . mysqli_error($enlace);
+        $mensaje = "Error en la operación: " . mysqli_error($datos);
         $tipo_alerta = "danger";
     }
 }
@@ -50,11 +50,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (isset($_GET["eliminar"])) {
     $id_eliminar = $_GET["eliminar"];
     $consulta_baja = "DELETE FROM mesas_examen WHERE id = $id_eliminar";
-    if (mysqli_query($enlace, $consulta_baja)) {
+    if (mysqli_query($datos, $consulta_baja)) {
         $mensaje = "Mesa eliminada";
         $tipo_alerta = "warning";
     } else {
-        $mensaje = "Error al eliminar: " . mysqli_error($enlace);
+        $mensaje = "Error al eliminar: " . mysqli_error($datos);
         $tipo_alerta = "danger";
     }
 }
@@ -63,14 +63,14 @@ $mesa_editar = null;
 if (isset($_GET["editar"])) {
     $editado = $_GET["editar"];
     $consulta_buscar = "SELECT * FROM mesas_examen WHERE id = $editado";
-    $res_buscar = mysqli_query($enlace, $consulta_buscar);
+    $res_buscar = mysqli_query($datos, $consulta_buscar);
     if ($res_buscar && mysqli_num_rows($res_buscar) > 0) {
         $mesa_editar = mysqli_fetch_assoc($res_buscar);
     }
 }
 
 $consulta_lista = "SELECT * FROM mesas_examen ORDER BY fecha DESC";
-$resultado_lista = mysqli_query($enlace, $consulta_lista);
+$resultado_lista = mysqli_query($datos, $consulta_lista);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -211,4 +211,4 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<?php mysqli_close($enlace); ?>
+<?php mysqli_close($datos); ?>

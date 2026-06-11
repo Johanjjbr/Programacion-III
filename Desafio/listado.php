@@ -12,7 +12,7 @@ if (isset($_GET["dni_buscar"]) && !empty($_GET["dni_buscar"])) {
     $dni_buscado = $_GET["dni_buscar"];
     
     $q_per = "SELECT nombre FROM persona WHERE dni = '$dni_buscado'";
-    $res_per = mysqli_query($enlace, $q_per);
+    $res_per = mysqli_query($datos, $q_per);
     if($res_per && mysqli_num_rows($res_per) > 0) {
         $p_data = mysqli_fetch_assoc($res_per);
         $nombre_persona_dni = $p_data['nombre'];
@@ -22,7 +22,7 @@ if (isset($_GET["dni_buscar"]) && !empty($_GET["dni_buscar"])) {
                         INNER JOIN persona p ON r.persona_id = p.id
                         INNER JOIN deporte d ON r.deporte_id = d.id
                         WHERE p.dni = '$dni_buscado'";
-        $deportes_por_dni = mysqli_query($enlace, $dnibuscar);
+        $deportes_por_dni = mysqli_query($datos, $dnibuscar);
         $cant_deportes = mysqli_num_rows($deportes_por_dni);
     } else {
         $nombre_persona_dni = "No encontrada";
@@ -37,7 +37,7 @@ if (isset($_GET["deporte_id"]) && !empty($_GET["deporte_id"])) {
                     INNER JOIN deporte d ON r.deporte_id = d.id
                     INNER JOIN persona p ON r.persona_id = p.id
                     WHERE d.id = $deporte_seleccionado";
-    $personas_por_deporte = mysqli_query($enlace, $deportebuscar);
+    $personas_por_deporte = mysqli_query($datos, $deportebuscar);
 }
 
 $deportemas = "SELECT d.nombre, COUNT(r.deporte_id) as total
@@ -46,10 +46,10 @@ $deportemas = "SELECT d.nombre, COUNT(r.deporte_id) as total
                 GROUP BY r.deporte_id
                 ORDER BY total DESC
                 LIMIT 1";
-$res_4c = mysqli_query($enlace, $deportemas);
+$res_4c = mysqli_query($datos, $deportemas);
 $deporte_top = ($res_4c && mysqli_num_rows($res_4c) > 0) ? mysqli_fetch_assoc($res_4c) : null;
 
-$listado_deportes_select = mysqli_query($enlace, "SELECT id, nombre FROM deporte ORDER BY nombre ASC");
+$listado_deportes_select = mysqli_query($datos, "SELECT id, nombre FROM deporte ORDER BY nombre ASC");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -174,4 +174,4 @@ $listado_deportes_select = mysqli_query($enlace, "SELECT id, nombre FROM deporte
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<?php mysqli_close($enlace); ?>
+<?php mysqli_close($datos); ?>

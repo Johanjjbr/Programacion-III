@@ -12,18 +12,18 @@
     $db_pass = "";
     $db_nombre = "instituto";
 
-    $enlace = mysqli_connect($db_host, $db_user, $db_pass, $db_nombre);
+    $datos = mysqli_connect($db_host, $db_user, $db_pass, $db_nombre);
 
     $consulta = "DELETE FROM alumno WHERE id='$form_id'";
 
-    if (mysqli_query($enlace, $consulta)) {
+    if (mysqli_query($datos, $consulta)) {
         echo "<p>Conexión a la base de datos $db_nombre </p>";
         echo "<p>El alumno ha sido eliminado</p>";
     } else {
-        echo "Error al eliminar: " . mysqli_error($enlace);
+        echo "Error al eliminar: " . mysqli_error($datos);
     }
 
-    mysqli_close($enlace);
+    mysqli_close($datos);
 
     ?>
     <br>

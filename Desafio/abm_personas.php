@@ -21,11 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $txt_exito = "Persona registrada";
     }
 
-    if (mysqli_query($enlace, $consulta)) {
+    if (mysqli_query($datos, $consulta)) {
         $mensaje = $txt_exito;
         $tipo_alerta = "success";
     } else {
-        $mensaje = "Error en la operación: " . mysqli_error($enlace);
+        $mensaje = "Error en la operación: " . mysqli_error($datos);
         $tipo_alerta = "danger";
     }
 }
@@ -34,15 +34,15 @@ if (isset($_GET["eliminar"])) {
     $id_eliminar = $_GET["eliminar"];
    
     $consulta_baja_relacion = "DELETE FROM realiza WHERE persona_id = $id_eliminar";
-    mysqli_query($enlace, $consulta_baja_relacion);
+    mysqli_query($datos, $consulta_baja_relacion);
 
     $consulta_baja = "DELETE FROM persona WHERE id = $id_eliminar";
     
-    if (mysqli_query($enlace, $consulta_baja)) {
+    if (mysqli_query($datos, $consulta_baja)) {
         $mensaje = "Persona eliminada";
         $tipo_alerta = "warning";
     } else {
-        $mensaje = "Error al eliminar: " . mysqli_error($enlace);
+        $mensaje = "Error al eliminar: " . mysqli_error($datos);
         $tipo_alerta = "danger";
     }
 }
@@ -51,14 +51,14 @@ $persona_editar = null;
 if (isset($_GET["editar"])) {
     $editado = $_GET["editar"];
     $consulta_buscar = "SELECT * FROM persona WHERE id = $editado";
-    $res_buscar = mysqli_query($enlace, $consulta_buscar);
+    $res_buscar = mysqli_query($datos, $consulta_buscar);
     if ($res_buscar && mysqli_num_rows($res_buscar) > 0) {
         $persona_editar = mysqli_fetch_assoc($res_buscar);
     }
 }
 
 $consulta_lista = "SELECT * FROM persona ORDER BY id DESC";
-$resultado_lista = mysqli_query($enlace, $consulta_lista);
+$resultado_lista = mysqli_query($datos, $consulta_lista);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -161,4 +161,4 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<?php mysqli_close($enlace); ?>
+<?php mysqli_close($datos); ?>

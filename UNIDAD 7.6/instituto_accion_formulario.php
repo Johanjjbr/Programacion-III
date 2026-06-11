@@ -6,8 +6,8 @@
 <body bgcolor="#DDE0F0">
     <h1>Listado de Alumnos</h1>
     <?php
-    $enlace = mysqli_connect("localhost", "root", "", "instituto");
-    $resultado = mysqli_query($enlace, "SELECT * FROM alumno");
+    $datos = mysqli_connect("localhost", "root", "", "instituto");
+    $resultado = mysqli_query($datos, "SELECT * FROM alumno");
     echo "<h3>Total de alumnos cargados: " . mysqli_num_rows($resultado) . "</h3>";
     ?>
     <table border="1" >
@@ -27,7 +27,7 @@
                   </td>";
             echo "</tr>";
         }
-        mysqli_close($enlace);
+        mysqli_close($datos);
         ?>
     </table>
     <footer class="mt-5 py-3 bg-light text-center border-top">

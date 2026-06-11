@@ -7,8 +7,8 @@
 <body >
     <h1>Playa</h1>
     <?php
-    $enlace = mysqli_connect("localhost", "root", "", "playa");
-    $resultado = mysqli_query($enlace, "SELECT * FROM turno");
+    $datos = mysqli_connect("localhost", "root", "", "playa");
+    $resultado = mysqli_query($datos, "SELECT * FROM turno");
     ?>
     
     <table class="table table-bordered">
@@ -27,7 +27,7 @@
                       </td>";
                 echo "</tr>";
             }
-            mysqli_close($enlace);
+            mysqli_close($datos);
             ?>
     </table>
 

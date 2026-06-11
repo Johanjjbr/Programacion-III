@@ -19,11 +19,11 @@ $mensaje = "";
 $tipo_alerta = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $form_usuario = mysqli_real_escape_string($enlace, $_POST["usuario"]);
-    $form_clave   = mysqli_real_escape_string($enlace, $_POST["clave"]);
+    $form_usuario = mysqli_real_escape_string($datos, $_POST["usuario"]);
+    $form_clave   = mysqli_real_escape_string($datos, $_POST["clave"]);
 
     $consulta = "SELECT * FROM usuarios WHERE usuario = '$form_usuario' AND clave = '$form_clave'";
-    $resultado = mysqli_query($enlace, $consulta);
+    $resultado = mysqli_query($datos, $consulta);
 
     if ($resultado && mysqli_num_rows($resultado) > 0) {
         $user = mysqli_fetch_assoc($resultado);
@@ -87,4 +87,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<?php mysqli_close($enlace); ?>
+<?php mysqli_close($datos); ?>

@@ -6,20 +6,20 @@ $form_cel = $_POST["cel"];
 $form_mail = $_POST["mail"];
 $form_dir = $_POST["dir"];
 
-$enlace = mysqli_connect("localhost", "root", "", "instituto");
+$datos = mysqli_connect("localhost", "root", "", "instituto");
 
 $consulta = "UPDATE alumno SET nombre='$form_nom', dni='$form_dni', telefono='$form_cel', mail='$form_mail', direccion='$form_dir' WHERE id='$form_id'";
 
-if (mysqli_query($enlace, $consulta)) {
+if (mysqli_query($datos, $consulta)) {
     echo "<h1>Los datos han sido modificados con éxito</h1>";
     echo "<table border='1'>
             <tr><td>Nombre</td><td>DNI</td><td>Celular</td><td>Mail</td><td>Dirección</td></tr>
             <tr><td>$form_nom</td><td>$form_dni</td><td>$form_cel</td><td>$form_mail</td><td>$form_dir</td></tr>
           </table>";
 } else {
-    echo "Error en la consulta: " . mysqli_error($enlace);
+    echo "Error en la consulta: " . mysqli_error($datos);
 }
-mysqli_close($enlace);
+mysqli_close($datos);
 ?>
 <br>
 <a href="instituto_accion_formulario.php">Volver al listado</a>

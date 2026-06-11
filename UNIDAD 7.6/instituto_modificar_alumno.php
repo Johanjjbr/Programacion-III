@@ -7,8 +7,8 @@
     <h1>Modificar datos de Alumno del Instituto</h1>
     <?php
     $form_id = $_POST["id"];
-    $enlace = mysqli_connect("localhost", "root", "", "instituto");
-    $resultado = mysqli_query($enlace, "SELECT * FROM alumno WHERE id='$form_id'");
+    $datos = mysqli_connect("localhost", "root", "", "instituto");
+    $resultado = mysqli_query($datos, "SELECT * FROM alumno WHERE id='$form_id'");
     $row = mysqli_fetch_row($resultado);
     ?>
     <form method="post" action="instituto_modificar_procesa.php">
@@ -26,7 +26,7 @@
             </tr>
         </table>
     </form>
-    <?php mysqli_close($enlace); ?>
+    <?php mysqli_close($datos); ?>
     <footer class="mt-5 py-3 bg-light text-center border-top">
         <p><strong>Programador:</strong> Johan Brito | <strong>Fecha:</strong> Mayo 2026</p>
         <p>Programación 3 - TSDS</p>

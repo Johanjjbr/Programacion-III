@@ -35,7 +35,7 @@ if (isset($_GET["buscar"]) && !empty($_GET["buscar"])) {
         INNER JOIN mesas_examen m ON i.id_mesa = m.id
         WHERE i.id = $id_buscar
     ";
-    $resultado = mysqli_query($enlace, $consulta);
+    $resultado = mysqli_query($datos, $consulta);
 
     if ($resultado && mysqli_num_rows($resultado) > 0) {
         $row = mysqli_fetch_assoc($resultado);
@@ -54,20 +54,20 @@ if (isset($_GET["buscar"]) && !empty($_GET["buscar"])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["insc_id"])) {
     $insc_id  = intval($_POST["insc_id"]);
-    $asistencia = mysqli_real_escape_string($enlace, $_POST["asistencia"]);
-    $nota     = mysqli_real_escape_string($enlace, $_POST["nota"]);
+    $asistencia = mysqli_real_escape_string($datos, $_POST["asistencia"]);
+    $nota     = mysqli_real_escape_string($datos, $_POST["nota"]);
 
     $verif = "SELECT m.fecha FROM inscripciones i INNER JOIN mesas_examen m ON i.id_mesa = m.id WHERE i.id = $insc_id";
-    $res_verif = mysqli_query($enlace, $verif);
+    $res_verif = mysqli_query($datos, $verif);
     if ($res_verif && mysqli_num_rows($res_verif) > 0) {
         $datos = mysqli_fetch_assoc($res_verif);
         if ($datos['fecha'] < date('Y-m-d')) {
             $update = "UPDATE inscripciones SET asistencia = '$asistencia', nota = '$nota' WHERE id = $insc_id";
-            if (mysqli_query($enlace, $update)) {
+            if (mysqli_query($datos, $update)) {
                 $mensaje = "Nota y asistencia actualizadas correctamente.";
                 $tipo_alerta = "success";
             } else {
-                $mensaje = "Error al actualizar: " . mysqli_error($enlace);
+                $mensaje = "Error al actualizar: " . mysqli_error($datos);
                 $tipo_alerta = "danger";
             }
         } else {
@@ -192,4 +192,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["insc_id"])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<?php mysqli_close($enlace); ?>
+<?php mysqli_close($datos); ?>

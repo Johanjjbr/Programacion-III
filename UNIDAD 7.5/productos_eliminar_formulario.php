@@ -5,8 +5,8 @@
 <body>
     <h1>Eliminar Productos del Supermercado</h1>
     <?php
-    $enlace = mysqli_connect("localhost", "root", "", "supermercado");
-    $resultado = mysqli_query($enlace, "SELECT * FROM producto");
+    $datos = mysqli_connect("localhost", "root", "", "supermercado");
+    $resultado = mysqli_query($datos, "SELECT * FROM producto");
     ?>
     <table border="1">
         <tr>
@@ -24,7 +24,7 @@
                   </td>";
             echo "</tr>";
         }
-        mysqli_close($enlace);
+        mysqli_close($datos);
 
 
         ?>

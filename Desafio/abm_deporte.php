@@ -18,11 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $txt_exito = "Deporte registrado";
     }
 
-    if (mysqli_query($enlace, $consulta)) {
+    if (mysqli_query($datos, $consulta)) {
         $mensaje = $txt_exito;
         $tipo_alerta = "success";
     } else {
-        $mensaje = "Error en la consulta: " . mysqli_error($enlace);
+        $mensaje = "Error en la consulta: " . mysqli_error($datos);
         $tipo_alerta = "danger";
     }
 }
@@ -30,15 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (isset($_GET["eliminar"])) {
     $id_eliminar = $_GET["eliminar"];
     $consulta_baja_relacion = "DELETE FROM realiza WHERE id_deporte = $id_eliminar";
-    mysqli_query($enlace, $consulta_baja_relacion);
+    mysqli_query($datos, $consulta_baja_relacion);
 
     $consulta_baja = "DELETE FROM deporte WHERE id = $id_eliminar";
     
-    if (mysqli_query($enlace, $consulta_baja)) {
+    if (mysqli_query($datos, $consulta_baja)) {
         $mensaje = "Deporte eliminado con éxito.";
         $tipo_alerta = "warning";
     } else {
-        $mensaje = "Error al eliminar: " . mysqli_error($enlace);
+        $mensaje = "Error al eliminar: " . mysqli_error($datos);
         $tipo_alerta = "danger";
     }
 }
@@ -47,14 +47,14 @@ $deporte_editar = null;
 if (isset($_GET["editar"])) {
     $editado = $_GET["editar"];
     $consulta_buscar = "SELECT * FROM deporte WHERE id = $editado";
-    $res_buscar = mysqli_query($enlace, $consulta_buscar);
+    $res_buscar = mysqli_query($datos, $consulta_buscar);
     if ($res_buscar && mysqli_num_rows($res_buscar) > 0) {
         $deporte_editar = mysqli_fetch_assoc($res_buscar);
     }
 }
 
 $consulta_lista = "SELECT * FROM deporte ORDER BY id DESC";
-$resultado_lista = mysqli_query($enlace, $consulta_lista);
+$resultado_lista = mysqli_query($datos, $consulta_lista);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -158,5 +158,5 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
 </body>
 </html>
 <?php 
-mysqli_close($enlace); 
+mysqli_close($datos); 
 ?>

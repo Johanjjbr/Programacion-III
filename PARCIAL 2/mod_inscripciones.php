@@ -20,21 +20,21 @@ $mensaje = "";
 $tipo_alerta = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $form_alumno = mysqli_real_escape_string($enlace, $_POST["id_alumno"]);
-    $form_mesa   = mysqli_real_escape_string($enlace, $_POST["id_mesa"]);
+    $form_alumno = mysqli_real_escape_string($datos, $_POST["id_alumno"]);
+    $form_mesa   = mysqli_real_escape_string($datos, $_POST["id_mesa"]);
 
     $verificar = "SELECT id FROM inscripciones WHERE id_alumno = $form_alumno AND id_mesa = $form_mesa";
-    $res_verif = mysqli_query($enlace, $verificar);
+    $res_verif = mysqli_query($datos, $verificar);
     if ($res_verif && mysqli_num_rows($res_verif) > 0) {
         $mensaje = "El alumno ya está inscripto en esta mesa.";
         $tipo_alerta = "warning";
     } else {
         $consulta = "INSERT INTO inscripciones (id_alumno, id_mesa, asistencia, nota) VALUES ($form_alumno, $form_mesa, NULL, NULL)";
-        if (mysqli_query($enlace, $consulta)) {
+        if (mysqli_query($datos, $consulta)) {
             $mensaje = "Inscripción registrada correctamente.";
             $tipo_alerta = "success";
         } else {
-            $mensaje = "Error al inscribir: " . mysqli_error($enlace);
+            $mensaje = "Error al inscribir: " . mysqli_error($datos);
             $tipo_alerta = "danger";
         }
     }
@@ -43,19 +43,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (isset($_GET["eliminar"])) {
     $id_eliminar = $_GET["eliminar"];
     $consulta_baja = "DELETE FROM inscripciones WHERE id = $id_eliminar";
-    if (mysqli_query($enlace, $consulta_baja)) {
+    if (mysqli_query($datos, $consulta_baja)) {
         $mensaje = "Inscripción eliminada";
         $tipo_alerta = "warning";
     } else {
-        $mensaje = "Error al eliminar: " . mysqli_error($enlace);
+        $mensaje = "Error al eliminar: " . mysqli_error($datos);
         $tipo_alerta = "danger";
     }
 }
 
-$alumnos = mysqli_query($enlace, "SELECT id, nombre, apellido, dni FROM alumnos ORDER BY apellido, nombre");
-$mesas   = mysqli_query($enlace, "SELECT id, fecha, materia, tipo FROM mesas_examen ORDER BY fecha DESC");
+$alumnos = mysqli_query($datos, "SELECT id, nombre, apellido, dni FROM alumnos ORDER BY apellido, nombre");
+$mesas   = mysqli_query($datos, "SELECT id, fecha, materia, tipo FROM mesas_examen ORDER BY fecha DESC");
 
-$inscripciones = mysqli_query($enlace, "
+$inscripciones = mysqli_query($datos, "
     SELECT i.id, a.apellido, a.nombre, a.dni, m.fecha, m.materia, m.tipo, i.asistencia, i.nota
     FROM inscripciones i
     INNER JOIN alumnos a ON i.id_alumno = a.id
@@ -188,4 +188,4 @@ $inscripciones = mysqli_query($enlace, "
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<?php mysqli_close($enlace); ?>
+<?php mysqli_close($datos); ?>

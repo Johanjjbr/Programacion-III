@@ -29,34 +29,34 @@ $inscripciones_alumno = null;
 $mesa_seleccionada = "";
 $inscriptos_por_mesa = null;
 
-$listado_mesas_habilitadas = mysqli_query($enlace, "
+$listado_mesas_habilitadas = mysqli_query($datos, "
     SELECT id, fecha, materia, tipo, titular, pvocal1, pvocal2
     FROM mesas_examen
     WHERE fecha <= CURDATE()
     ORDER BY fecha ASC
 ");
 
-$listado_mesas_select = mysqli_query($enlace, "
+$listado_mesas_select = mysqli_query($datos, "
     SELECT id, fecha, materia, tipo FROM mesas_examen ORDER BY fecha DESC
 ");
 
-$listado_alumnos = mysqli_query($enlace, "
+$listado_alumnos = mysqli_query($datos, "
     SELECT id, nombre, apellido, dni, direccion, telefono, email
     FROM alumnos
     ORDER BY apellido ASC, nombre ASC
 ");
 
 if (isset($_GET["dni_buscar"]) && !empty($_GET["dni_buscar"])) {
-    $dni_buscado = mysqli_real_escape_string($enlace, $_GET["dni_buscar"]);
+    $dni_buscado = mysqli_real_escape_string($datos, $_GET["dni_buscar"]);
     $tab_activa = 'dni';
 
     $q_alum = "SELECT id, nombre, apellido, dni FROM alumnos WHERE dni = '$dni_buscado'";
-    $res_alum = mysqli_query($enlace, $q_alum);
+    $res_alum = mysqli_query($datos, $q_alum);
     if ($res_alum && mysqli_num_rows($res_alum) > 0) {
         $info_alumno = mysqli_fetch_assoc($res_alum);
         $id_alumno = $info_alumno['id'];
 
-        $inscripciones_alumno = mysqli_query($enlace, "
+        $inscripciones_alumno = mysqli_query($datos, "
             SELECT i.id, m.fecha, m.materia, m.tipo, i.asistencia, i.nota
             FROM inscripciones i
             INNER JOIN mesas_examen m ON i.id_mesa = m.id
@@ -70,7 +70,7 @@ if (isset($_GET["id_mesa"]) && !empty($_GET["id_mesa"])) {
     $mesa_seleccionada = intval($_GET["id_mesa"]);
     $tab_activa = 'mesa_insc';
 
-    $inscriptos_por_mesa = mysqli_query($enlace, "
+    $inscriptos_por_mesa = mysqli_query($datos, "
         SELECT i.id, a.apellido, a.nombre, a.dni, i.asistencia, i.nota
         FROM inscripciones i
         INNER JOIN alumnos a ON i.id_alumno = a.id
@@ -354,4 +354,4 @@ if (isset($_GET["id_mesa"]) && !empty($_GET["id_mesa"])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<?php mysqli_close($enlace); ?>
+<?php mysqli_close($datos); ?>

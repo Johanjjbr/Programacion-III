@@ -22,11 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $txt_exito = "Vínculo creado con éxito. Se ha asignado el deporte a la persona.";
     }
 
-    if (mysqli_query($enlace, $consulta)) {
+    if (mysqli_query($datos, $consulta)) {
         $mensaje = $txt_exito;
         $tipo_alerta = "success";
     } else {
-        $mensaje = "Error en la consulta (posiblemente la persona ya realiza este deporte): " . mysqli_error($enlace);
+        $mensaje = "Error en la consulta (posiblemente la persona ya realiza este deporte): " . mysqli_error($datos);
         $tipo_alerta = "danger"; 
     }
 }
@@ -37,11 +37,11 @@ if (isset($_GET["del_per"]) && isset($_GET["del_dep"])) {
     
     $consulta_baja = "DELETE FROM realiza WHERE persona_id = $del_per AND deporte_id = $del_dep";
     
-    if (mysqli_query($enlace, $consulta_baja)) {
+    if (mysqli_query($datos, $consulta_baja)) {
         $mensaje = "Vínculo eliminado con éxito.";
         $tipo_alerta = "warning";
     } else {
-        $mensaje = "Error al eliminar: " . mysqli_error($enlace);
+        $mensaje = "Error al eliminar: " . mysqli_error($datos);
         $tipo_alerta = "danger";
     }
 }
@@ -54,17 +54,17 @@ if (isset($_GET["edit_per"]) && isset($_GET["edit_dep"])) {
 }
 
 $consulta_personas = "SELECT id, nombre, dni FROM persona ORDER BY nombre ASC";
-$resultado_personas = mysqli_query($enlace, $consulta_personas);
+$resultado_personas = mysqli_query($datos, $consulta_personas);
 
 $consulta_deportes = "SELECT id, nombre, categoria FROM deporte ORDER BY nombre ASC";
-$resultado_deportes = mysqli_query($enlace, $consulta_deportes);
+$resultado_deportes = mysqli_query($datos, $consulta_deportes);
 
 $consulta_lista = "SELECT r.persona_id, r.deporte_id, p.nombre AS persona_nom, p.dni, d.nombre AS deporte_nom, d.categoria 
                    FROM realiza r
                    INNER JOIN persona p ON r.persona_id = p.id
                    INNER JOIN deporte d ON r.deporte_id = d.id
                    ORDER BY p.nombre ASC";
-$resultado_lista = mysqli_query($enlace, $consulta_lista);
+$resultado_lista = mysqli_query($datos, $consulta_lista);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -183,5 +183,5 @@ $resultado_lista = mysqli_query($enlace, $consulta_lista);
 </html>
 
 <?php
-mysqli_close($enlace);
+mysqli_close($datos);
 ?>

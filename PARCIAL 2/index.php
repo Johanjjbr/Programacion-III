@@ -22,6 +22,13 @@ if (isset($_GET["cerrar_sesion"])) {
     header("Location: login.php");
     exit();
 }
+
+function mostrar ($d){
+    if ($d = 1) {
+        echo "Hola mundo";
+    }   }
+  
+mostrar(1);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -105,7 +112,7 @@ if (isset($_GET["cerrar_sesion"])) {
                             <i class="bi bi-people fs-1"></i>
                             <h5 class="card-title mt-2">Alumnos</h5>
                             <?php
-                            $res = mysqli_query($enlace, "SELECT COUNT(*) as total FROM alumnos");
+                            $res = mysqli_query($datos, "SELECT COUNT(*) as total FROM alumnos");
                             $row = mysqli_fetch_assoc($res);
                             ?>
                             <p class="card-text display-6"><?php echo $row['total']; ?></p>
@@ -118,7 +125,7 @@ if (isset($_GET["cerrar_sesion"])) {
                             <i class="bi bi-calendar-event fs-1"></i>
                             <h5 class="card-title mt-2">Mesas</h5>
                             <?php
-                            $res = mysqli_query($enlace, "SELECT COUNT(*) as total FROM mesas_examen");
+                            $res = mysqli_query($datos, "SELECT COUNT(*) as total FROM mesas_examen");
                             $row = mysqli_fetch_assoc($res);
                             ?>
                             <p class="card-text display-6"><?php echo $row['total']; ?></p>
@@ -131,7 +138,7 @@ if (isset($_GET["cerrar_sesion"])) {
                             <i class="bi bi-pencil-square fs-1"></i>
                             <h5 class="card-title mt-2">Inscripciones</h5>
                             <?php
-                            $res = mysqli_query($enlace, "SELECT COUNT(*) as total FROM inscripciones");
+                            $res = mysqli_query($datos, "SELECT COUNT(*) as total FROM inscripciones");
                             $row = mysqli_fetch_assoc($res);
                             ?>
                             <p class="card-text display-6"><?php echo $row['total']; ?></p>
@@ -144,7 +151,7 @@ if (isset($_GET["cerrar_sesion"])) {
                             <i class="bi bi-star fs-1"></i>
                             <h5 class="card-title mt-2">Con Notas</h5>
                             <?php
-                            $res = mysqli_query($enlace, "SELECT COUNT(*) as total FROM inscripciones WHERE nota IS NOT NULL");
+                            $res = mysqli_query($datos, "SELECT COUNT(*) as total FROM inscripciones WHERE nota IS NOT NULL");
                             $row = mysqli_fetch_assoc($res);
                             ?>
                             <p class="card-text display-6"><?php echo $row['total']; ?></p>
@@ -178,4 +185,4 @@ if (isset($_GET["cerrar_sesion"])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<?php mysqli_close($enlace); ?>
+<?php mysqli_close($datos); ?>

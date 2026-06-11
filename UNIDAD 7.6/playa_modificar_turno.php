@@ -8,8 +8,8 @@
     <h1>Modificar</h1>
     <?php
     $form_id = $_POST["id"];
-    $enlace = mysqli_connect("localhost", "root", "", "playa");
-    $resultado = mysqli_query($enlace, "SELECT * FROM turno WHERE id_turno='$form_id'");
+    $datos = mysqli_connect("localhost", "root", "", "playa");
+    $resultado = mysqli_query($datos, "SELECT * FROM turno WHERE id_turno='$form_id'");
     $row = mysqli_fetch_row($resultado);
     ?>
 
@@ -35,7 +35,7 @@
             <button type="submit" onclick="return confirm('¿Confirmar cambios?')">Guardar Cambios</button>
         </form>
     </div>
-    <?php mysqli_close($enlace); ?>
+    <?php mysqli_close($datos); ?>
     <footer class="mt-5 py-3 bg-light text-center border-top">
         <p><strong>Programador:</strong> Johan Brito | <strong>Fecha:</strong> Mayo 2026</p>
         <p>Programación 3 - TSDS</p>

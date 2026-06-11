@@ -12,18 +12,18 @@
         $db_password = "";
         $db_name = "playa";
 
-        $enlace = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+        $datos = mysqli_connect($db_host, $db_user, $db_password, $db_name);
         $sql = "SELECT * FROM turno";
-        $resultado = mysqli_query($enlace, $sql);
+        $resultado = mysqli_query($datos, $sql);
 
-        if (!$enlace) {
+        if (!$datos) {
             echo "Error de conexión: " . mysqli_connect_error();
         } else {
             echo "Conexión exitosa a la base de datos Playa";
-            echo "<p>informacion del host: " . mysqli_get_host_info($enlace) . "</p>";
+            echo "<p>informacion del host: " . mysqli_get_host_info($datos) . "</p>";
         }
 
-        mysqli_close($enlace);
+        mysqli_close($datos);
 
 echo "<table border='1'>";
     echo"<tr>";
