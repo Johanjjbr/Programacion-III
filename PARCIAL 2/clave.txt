@@ -1,0 +1,14 @@
+Administrador
+    usuario: admin
+    contraseña: admin
+
+Operador1
+    usuario: operador
+    contraseña: op123
+
+
+INSERT INTO `usuarios` (`usuario`, `clave`, `nombre_completo`, `perfil`) VALUES
+('admin', 'admin', 'Johan Jesus Brito Rodriguez', 'Administrativo'),
+('lucas_diaz', 'op789', 'Lucas Díaz', 'Operador'),
+('maria_lopez', 'op456', 'María López', 'Operador'),
+('operador', 'op123', 'Carlos Gómez', 'Operador');
