@@ -1,0 +1,29 @@
+# PDFs
+*.pdf
+
+# CodeIgniter framework core
+CodeIgniter/miproyecto/system/
+CodeIgniter/miproyecto/user_guide/
+CodeIgniter/miproyecto/contributing.md
+CodeIgniter/miproyecto/license.txt
+CodeIgniter/miproyecto/readme.rst
+CodeIgniter/miproyecto/.editorconfig
+
+# Cache y logs
+CodeIgniter/miproyecto/application/cache/
+CodeIgniter/miproyecto/application/logs/
+
+# Composer
+CodeIgniter/miproyecto/composer.lock
+CodeIgniter/miproyecto/vendor/
+
+# IDE
+.idea/
+.vscode/
+nbproject/
+*.sublime-workspace
+*.sublime-project
+
+# OS
+.DS_Store
+Thumbs.db
