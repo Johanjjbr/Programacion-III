@@ -7,7 +7,7 @@
 <tr>
 <td colspan='3'>
 <center>
-<table>
+<table border=0 width="400" cellpadding="0">
 <tr>
 <td rowspan="4" ><img src="<?php echo base_url();?>imagenes/perfil.jpeg" width="150" height="150"/></td>
 <td><strong>Nombre:</strong></td>
