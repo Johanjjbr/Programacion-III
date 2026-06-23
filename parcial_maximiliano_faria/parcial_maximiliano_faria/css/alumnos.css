@@ -1,0 +1,10 @@
+/*
+Programador: Maximiliano Faria
+Fecha de desarrollo: Junio/2026
+Materia: Programacion 3 de la TSDS
+Curso: Tecnicatura Superior en Desarrollo de Software
+*/
+body { background: #fbf8f4; }
+.panel { background: white; border-radius: 8px; padding: 20px; border: 1px solid #eadfce; }
+h1 { font-size: 26px; margin-bottom: 18px; }
+

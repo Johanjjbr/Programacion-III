@@ -1,0 +1,12 @@
+1.- Abrir el Archivo de config.php y en la linea 17 colocar el url en donde se va ejecutar el proyecto el archivo esta en ./application/config/config.php
+
+2.- Importar en el servidor de BD el archivo .sql
+
+3.- Configurar mis datos del servidor en el archivo de database.php esta ubicado en ./application/config/database.php apartir de la linea 51 a la 54
+
+si descubrió este archivo ... va por buen camino
+
+credenciales para poder acceder
+
+usuario: p3@desarrollosphp.com
+password: 1234
