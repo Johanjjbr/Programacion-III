@@ -25,6 +25,10 @@
 	echo '</td>';
 	echo '<td><font color="red">'.form_error('NOMBRE').'</font></td>';
 	echo '</tr>';
+
+
+
+	echo '<tr><td colspan=3> <select> <option value="1">Carrera 1</option>	<option value="2">Carrera 2</option></select></td></tr>';
 	
 	$Apellido = array(
 	'name'        => 'APELLIDO',
@@ -37,7 +41,7 @@
 	echo '<tr>';
 	echo '<td>'.form_label("Apellido:",'APELLIDO').'</td>';
 	echo '<td>';
-	echo form_input($Apellido);
+	echo '<tr><td colspan=3> <select> <option value="1">Carrera 1</option>	<option value="2">Carrera 2</option></select></td></tr>';
 	echo '</td>';
 	echo '<td><font color="red">'.form_error('APELLIDO').'</font></td>';
 	echo '</tr>';

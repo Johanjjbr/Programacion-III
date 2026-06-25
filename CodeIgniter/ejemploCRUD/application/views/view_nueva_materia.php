@@ -73,6 +73,24 @@
 	echo '</td>';
 	echo '<td><font color="red">'.form_error('CARRERA').'</font></td>';
 	echo '</tr>';
+
+	$opciones_tipo = array('Anual' => 'Anual', 'Cuatrimestral' => 'Cuatrimestral');
+	echo '<tr>';
+	echo '<td>'.form_label("Tipo:",'TIPO').'</td>';
+	echo '<td>';
+	echo form_dropdown('TIPO', $opciones_tipo, set_value('TIPO', @$datos_materia[0]->TIPO), 'id="TIPO" class="form-control"');
+	echo '</td>';
+	echo '<td><font color="red">'.form_error('TIPO').'</font></td>';
+	echo '</tr>';
+
+	$opciones_cursado = array('Presencial' => 'Presencial', 'Virtual' => 'Virtual');
+	echo '<tr>';
+	echo '<td>'.form_label("Cursado:",'CURSADO').'</td>';
+	echo '<td>';
+	echo form_dropdown('CURSADO', $opciones_cursado, set_value('CURSADO', @$datos_materia[0]->CURSADO), 'id="CURSADO" class="form-control"');
+	echo '</td>';
+	echo '<td><font color="red">'.form_error('CURSADO').'</font></td>';
+	echo '</tr>';
 	
 	echo '<tr>';
 	echo '<td colspan=3>'.$this->session->flashdata('msg').'</td>';

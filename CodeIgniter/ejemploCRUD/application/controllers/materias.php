@@ -37,6 +37,8 @@ class materias extends CI_Controller
 		 $this->form_validation->set_rules("CARGA_HORARIA", "Carga Horaria", "trim|required|numeric");
 		 $this->form_validation->set_rules("ANO", "Año", "trim|required|numeric");
 		 $this->form_validation->set_rules("CARRERA", "Carrera", "trim|required");
+		 $this->form_validation->set_rules("TIPO", "Tipo", "trim|required");
+		 $this->form_validation->set_rules("CURSADO", "Cursado", "trim|required");
 	 }
 	 public function editar($id = NULL){
 		if ($id == NULL OR !is_numeric($id)){

@@ -28,6 +28,8 @@ if(isset($_GET['update'])){
 <th>CARGA HORARIA</th>
 <th>AÑO</th>
 <th>CARRERA</th>
+<th>TIPO</th>
+<th>CURSADO</th>
 </tr>
 </thead>
 <tbody>
@@ -45,6 +47,8 @@ if(isset($_GET['update'])){
 		echo '<td>'.$materia->CARGA_HORARIA.'</td>';
 		echo '<td>'.$materia->ANO.'</td>';
 		echo '<td>'.$materia->CARRERA.'</td>';
+		echo '<td>'.$materia->TIPO.'</td>';
+		echo '<td>'.$materia->CURSADO.'</td>';
  		echo '</tr>';
  	} 
  }
